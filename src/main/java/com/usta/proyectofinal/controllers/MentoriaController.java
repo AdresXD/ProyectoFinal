@@ -1,7 +1,7 @@
 package com.usta.proyectofinal.controllers;
 
 import com.usta.proyectofinal.entities.MentoriaEntity;
-import com.usta.proyectofinal.services.MentoriaService;
+import com.usta.proyectofinal.services.MentoriaServicePa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ import java.util.List;
 //mentor controller
 public class MentoriaController {
     @Autowired
-    private MentoriaService mentoriaService;
+    private MentoriaServicePa mentoriaService;
 
     @GetMapping(value ="/mentoria")
     public String Mentoria(Model model){

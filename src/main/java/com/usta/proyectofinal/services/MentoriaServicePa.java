@@ -4,7 +4,7 @@ import com.usta.proyectofinal.entities.MentoriaEntity;
 
 import java.util.List;
 
-public interface MentoriaService {
+public interface MentoriaServicePa {
         public List<MentoriaEntity> findAll();
         public void save(MentoriaEntity mentoria);
         public MentoriaEntity findById(int id);

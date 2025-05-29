@@ -7,9 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public class MentoriaServiceImplement implements MentoriaService{
-    @Autowired
-    private MentoriaDao mentoriaDao;
+public class MentoriaServiceImplement implements MentoriaServicePa {
+
 
     @Override
     @Transactional
