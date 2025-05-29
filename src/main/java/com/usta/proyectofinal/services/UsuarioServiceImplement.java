@@ -8,8 +8,6 @@ import java.util.List;
 
 @Service
 public class UsuarioServiceImplement implements UsuarioService {
-    @Autowired
-    private UsuarioService usuarioService;
 
     @Override
     public List<UsuarioEntity> findAll() {
