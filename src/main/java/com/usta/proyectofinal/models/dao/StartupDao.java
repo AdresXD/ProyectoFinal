@@ -16,8 +16,4 @@ public interface StartupDao extends CrudRepository {
     @Transactional
     @Query("SELECT S FROM StartupEntity S WHERE S.idStartup=?1")
     public List<StartupEntity> findByIdStartup(Long idStartup);
-
-    @Transactional
-    @Query("DELETE FROM StartupEntity S WHERE S.idStartup =?1")
-    public void deleteByIdStartup(Long idStartup);
 }
