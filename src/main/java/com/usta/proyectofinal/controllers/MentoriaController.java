@@ -12,7 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 @Controller
 //mentor controller
-public class MentorController {
+public class MentoriaController {
     @Autowired
     private MentoriaService mentoriaService;
 
