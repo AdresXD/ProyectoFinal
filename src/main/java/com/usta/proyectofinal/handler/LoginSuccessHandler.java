@@ -1,4 +1,4 @@
-package com.usta.hotel.handler;
+package com.usta.proyectofinal.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
