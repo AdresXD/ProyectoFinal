@@ -50,16 +50,15 @@ public class UsuarioEntity {
 
     /**
      public RolEntity getRol() {
-     return this.rol;
+        return this.rol;
      }
 
      public void setRol(RolEntity rol) {
-     this.rol = rol;
+        this.rol = rol;
      }
 
      public String getEmail() {
-     return this.email;
-     }
+        return this.email;
      }
      */
 }
