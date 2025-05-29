@@ -18,4 +18,6 @@ public interface MentoriaDao extends CrudRepository<MentoriaEntity, Long> {
     @Modifying
     @Query("SELECT Me FROM MentoriaEntity Me ORDER BY Me.fecha DESC ")
     List<MentoriaEntity> findMentoriasByDate();
+
+    //Dao de mentorias listo
 }
