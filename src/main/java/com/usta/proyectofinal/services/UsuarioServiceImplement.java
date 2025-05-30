@@ -26,7 +26,6 @@ public class UsuarioServiceImplement implements UsuarioService {
 
     @Override
     public void delete(int id) {
-
     }
 
     @Override
