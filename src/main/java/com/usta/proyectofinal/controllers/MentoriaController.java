@@ -25,6 +25,4 @@ public class MentoriaController {
         model.addAttribute("mentorias",lista);
         return "mentorias/listarMentorias";
     }
-
-
 }
