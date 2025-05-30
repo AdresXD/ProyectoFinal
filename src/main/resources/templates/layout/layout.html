@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8">
@@ -15,63 +15,79 @@
       th:style="'background-image: url('+@{/images/FondoMain.jpg}+' );
         background-size:cover; background position: center; backdrop-filter:blur(1px)'">
 
-    <header th:fragment="header">
-            <div class="flex flex-col items-center text-white">
-                <a th:href="@{/}" class="text-2xl font-serif tracking-wide drop-shadow-md transition-all
-            hover:text-amber-400 hover:scale-105">
-            </div>
+<header th:fragment="header">
+    <nav class="absolute top-0 left-0 right-0 flex justify-between items-center bg-blue-800/50 py-4 px-20
+        w-screen h-[85px] backdrop-blur-lg shadow-md">
+        <div class="flex flex-col items-center text-white">
+            <a th:href="@{/}" class="text-2xl font-serif tracking-wide drop-shadow-md transition-all
+                    hover:text-amber-400 hover:scale-105">
+                <img src="/images/Logo.png" alt="Logo"
+                     class="position-absolute top-0 start-0 m-3" style="width:100px;">
+        </div>
 
-            <ul class="flex gap-8 text-lg font-medium items-center">
-                <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
-                </li>
-                <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
-                </li>
-            </ul>
-
-            <ul class="flex gap-6 items-center font-medium">
-                <li class="border border-white bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-white
-            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-amber-500"
-                    sec:authorize="isAnonymous()">
-                    <a th:href="@{/register}">
-                        Sing up
-                    </a>
-                </li>
-
-                <li class="border border-white bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-white
-            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-amber-500"
-                    sec:authorize="isAuthenticated">
-                    <form th:action="@{/logout}" method="post">
-                        <a class="nav-link" onclick="this.parentNode.submit();" href="#">
-                            Log Out
-                        </a>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <div th:fragment="nuevo" class="absolute top-[70px] left-0 right-0 flex-justify-between bg-yellow-500 py-4 px-20 2-screen h-[50px]">
-        <ul class="2-full flex justify-end items-center">
-            <li class="flex gap-4 p-2 border border-white rounded-xl hover:bg-white hover:text-cyan-950 text-sm active:scale-105 transition-all">
-                <a th:href="@{${urlRegistro}}">Add new Record</a>
+        <ul class="flex gap-8 text-lg font-medium items-center">
+            <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
+                sec:authorize="hasRole('EMPRENDEDOR')">
+                <a th:href="@{/startupsList}">Listar mis startups</a>
+            </li>
+            <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
+                sec:authorize="hasAnyRole('ADMINISTRADOR', 'EMPRENDEDOR', 'MENTOR', 'INVERCIONISTA')">
+                <a th:href="@{/convocatoria}">Convocatorias</a>
+            </li>
+            <li class="hover:text-gray-300 hover:underLine transition-all underline-offset-4"
+                sec:authorize="hasRole('INVERCIONISTA')">
+                <a th:href="@{/patrocinios}">Patrocinios</a>
+            </li>
+            <li class="hover:text-gray-300 hover:underLine transition-all underline-offset-4"
+                sec:authorize="hasRole('MENTOR')">
+                <a th:href="@{/mentoria}">Mis mentorias</a>
             </li>
         </ul>
-    </div>
 
-    <div th:fragment="nuevo2" class="absolute top-[70px] w-full h-[50px] px-6 flex justify-end
+        <ul class="flex gap-6 items-center font-medium">
+            <li class="border border-white bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-white
+            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-amber-500"
+                sec:authorize="isAnonymous()">
+                <a th:href="@{/register}">
+                    Sing up
+                </a>
+            </li>
+
+            <li class="border border-white bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-white
+            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-amber-500"
+                sec:authorize="isAuthenticated">
+                <form th:action="@{/logout}" method="post">
+                    <a class="nav-link" onclick="this.parentNode.submit();" href="#">
+                        Log Out
+                    </a>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<div th:fragment="nuevo" class="absolute top-[70px] left-0 right-0 flex-justify-between bg-yellow-500 py-4 px-20 2-screen h-[50px]">
+    <ul class="2-full flex justify-end items-center">
+        <li class="flex gap-4 p-2 border border-white rounded-xl hover:bg-white hover:text-cyan-950 text-sm active:scale-105 transition-all">
+            <a th:href="@{${urlRegistro}}">Add new Record</a>
+        </li>
+    </ul>
+</div>
+
+<div th:fragment="nuevo2" class="absolute top-[70px] w-full h-[50px] px-6 flex justify-end
     items-center">
-        <a th:href="@{${urlRegistro}}"
-           class="bg-amber-600 text-white px-4 py-2 rounded-xl text-sm
+    <a th:href="@{${urlRegistro}}"
+       class="bg-amber-600 text-white px-4 py-2 rounded-xl text-sm
                 hover:bg-white hover:text-amber-900 border-amber-600 transition-all active:scale-105 font-bold">
-            Add new record
-        </a>
-    </div>
+        Add new record
+    </a>
+</div>
 
-    <footer th:fragment="footer" class="fixed bottom-0 left-0 w-screen text-center text-white py-1">
-        <div class="fixed bottom-0 left-0 w-screen py-4 px-10
+<footer th:fragment="footer" class="fixed bottom-0 left-0 w-screen text-center text-white py-1">
+    <div class="fixed bottom-0 left-0 w-screen py-4 px-10
         w-screen h-50px]">
-            <p>&copy 2025</p>
-        </div>
-    </footer>
+        <p>&copy 2025</p>
+    </div>
+</footer>
 </body>
 </html>
