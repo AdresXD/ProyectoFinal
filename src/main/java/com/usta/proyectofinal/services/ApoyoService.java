@@ -1,8 +1,10 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.ApoyoEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 
 public interface ApoyoService {
     public List<ApoyoEntity>findAll();

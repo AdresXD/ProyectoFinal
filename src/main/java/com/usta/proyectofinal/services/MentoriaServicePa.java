@@ -1,8 +1,10 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.MentoriaEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 
 public interface MentoriaServicePa {
         public List<MentoriaEntity> findAll();

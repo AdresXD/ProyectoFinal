@@ -14,7 +14,7 @@ import java.util.List;
 //mentor controller
 public class MentoriaController {
     @Autowired
-    private MentoriaServicePa mentoriaService;
+    private MentoriaServicePa mentoriaServicePa;
 
     @GetMapping(value ="/mentoria")
     public String Mentoria(Model model){

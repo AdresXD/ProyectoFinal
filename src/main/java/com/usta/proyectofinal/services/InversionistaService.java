@@ -2,9 +2,10 @@ package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.InversionistaEntity;
 import com.usta.proyectofinal.entities.RolEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface InversionistaService {
     public List<InversionistaEntity> findAll();
     public void save(InversionistaEntity inversionista);
