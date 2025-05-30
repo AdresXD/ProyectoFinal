@@ -39,6 +39,6 @@ public class RolEntity implements Serializable {
     }
 
     public Long getIdRol(){return idRol;}
-    public void setIdRol(Long idRol){this.idRol = idRol;}
+    public void setIdRol(){this.idRol = idRol;}
 
 }
