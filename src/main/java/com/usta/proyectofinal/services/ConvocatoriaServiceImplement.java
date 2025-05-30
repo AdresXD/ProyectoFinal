@@ -1,12 +1,10 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.ConvocatoriaEntity;
+import com.usta.proyectofinal.services.ConvocatoriaService;
 import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-@Service
 
 public class ConvocatoriaServiceImplement implements ConvocatoriaService {
     @Override
@@ -30,7 +28,7 @@ public class ConvocatoriaServiceImplement implements ConvocatoriaService {
     @Override
     @Transactional
     public void delete(int id) {
-        //ConvocatoriaDao.deleteById();
+
     }
 
     @Override

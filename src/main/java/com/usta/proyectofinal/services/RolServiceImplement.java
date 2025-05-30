@@ -1,14 +1,12 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.RolEntity;
-import org.springframework.stereotype.Service;
+import com.usta.proyectofinal.services.RolService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
-
-public class RolServiceImplement  implements RolService{
+public class RolServiceImplement  implements RolService {
     @Override
     @Transactional
     public List<RolEntity> findAll() {

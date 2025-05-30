@@ -1,13 +1,13 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.StartupEntity;
+import com.usta.proyectofinal.services.StartUpService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-
 public class StartUpServiceImplement implements StartUpService {
     @Override
     @Transactional

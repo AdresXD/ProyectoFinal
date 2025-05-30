@@ -1,4 +1,4 @@
-package com.usta.proyectofinal.models.services;
+package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.ApoyoEntity;
 import com.usta.proyectofinal.models.dao.ApoyoDao;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 
-public class ApoyoServiceImplement implements com.usta.proyectofinal.models.services.ApoyoService {
+public class ApoyoServiceImplement implements ApoyoService {
     @Autowired
     private ApoyoDao apoyoDao;
 

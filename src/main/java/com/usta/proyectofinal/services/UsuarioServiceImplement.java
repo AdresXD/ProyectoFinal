@@ -1,7 +1,7 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.UsuarioEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.usta.proyectofinal.services.UsuarioService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
