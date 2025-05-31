@@ -13,5 +13,5 @@ public interface UsuarioService {
     public void delete(int id);
     public UsuarioEntity actualizarUsu(UsuarioEntity usuario);
     public void changeState(int id);
-    public UsuarioEntity viewDetail(int id);
+    public UsuarioEntity viewDetail(Long id);
 }

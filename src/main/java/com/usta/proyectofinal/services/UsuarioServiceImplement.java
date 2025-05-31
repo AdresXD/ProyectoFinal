@@ -40,7 +40,7 @@ public class UsuarioServiceImplement implements UsuarioService {
     }
 
     @Override
-    public UsuarioEntity viewDetail(int id) {
+    public UsuarioEntity viewDetail(Long id) {
         return null;
     }
 }

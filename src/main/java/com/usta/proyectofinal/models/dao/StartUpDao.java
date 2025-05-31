@@ -4,5 +4,5 @@ import com.usta.proyectofinal.entities.StartupEntity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface StartUpDao extends CrudRepository<StartupEntity, Integer> {
-
+    //Nesecita busqueda
 }

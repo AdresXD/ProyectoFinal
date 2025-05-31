@@ -3,7 +3,7 @@
 
 <head th:replace="~{layout/layout :: head}"></head>
 
-<body class="m-0 p-0 font-sans bg-[url('/images/img.jpg')] bg-cover bg-center bg-fixed">
+<body class="m-0 p-0 font-sans bg-[url('/images/FondoMain.jpg')] bg-cover bg-center bg-fixed">
 <header th:replace="~{layout/layout :: header}"></header>
 
 <div class="max-w-md mx-auto mt-24 mb-12 bg-white/90 rounded-xl p-8 shadow-2xl">
@@ -11,6 +11,18 @@
 
     <form th:action="@{/register}" th:object="${usuario}" method="post"
           class="flex flex-col gap-6">
+
+        <div class="flex flex-col">
+            <label for="idUsuario" class="text-stone-900 font-bold mb-1">Set your DNI:</label>
+            <input type="text"
+                   id="idUsuario"
+                   th:field="*{idUsuario}"
+                   placeholder="Enter your DNI"
+                   required
+                   class="p-2 rounded-md border border-gray-300 focus:outline-none
+                   focus:ring-2 focus:ring-amber-400" />
+            <small class="text-gray-500 text-sm mt-1">We will not share your information.</small>
+        </div>
 
         <div class="flex flex-col">
             <label for="nombresUsuario" class="text-stone-900 font-bold mb-1">Full name:</label>
@@ -22,6 +34,16 @@
                    class="p-2 rounded-md border border-gray-300 focus:outline-none
                    focus:ring-2 focus:ring-amber-400" />
             <small class="text-gray-500 text-sm mt-1">We will not share your information.</small>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="fechaRegistro" class="text-stone-900 font-bold mb-1">Date:</label>
+            <input type="text"
+                   id="fechaRegistro"
+                   th:value="${fechaRegistro}"
+                   required
+                   class="p-2 rounded-md border border-gray-300 focus:outline-none
+                   focus:ring-2 focus:ring-amber-400" readonly/>
         </div>
 
         <div class="flex flex-col">
@@ -65,9 +87,17 @@
         </div>
 
         <button type="submit"
-                class="bg-amber-600 text-white py-3 px-4 rounded-md font-bold
+                class="bg-blue-700 text-white py-3 px-4 rounded-md font-bold
                 hover:opacity-75 transition-all">
             REGISTER
+        </button>
+
+        <div class="h-1 bg-slate-800 shadow-mb rounded-full my-5 w-3/4 mx-auto"></div>
+
+        <button th:href="@{/login}"
+                class="bg-blue-700 text-white py-3 px-4 rounded-md font-bold
+                hover:opacity-75 transition-all">
+            LOGIN
         </button>
     </form>
 </div>

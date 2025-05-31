@@ -68,14 +68,24 @@ public class UsuarioController {
         String pass = new BCryptPasswordEncoder().encode(usuario.getPassword());
         usuario.setPassword(pass);
 
-        RolEntity rolHuesped = new RolEntity();
-        rolHuesped.setIdRol(2L);
-        usuario.setRol(rolHuesped);
+        RolEntity rol = new RolEntity();
+        rol.setIdRol(2L);
+        usuario.setRol(rol);
         usuario.setFechaRegistro(LocalDate.now());
         usuarioService.save(usuario);
         status.setComplete();
         redirectAttributes.addFlashAttribute("success", "User registered successfully!");
         return "redirect:/login";
+    }
+
+    //*****************
+    @GetMapping(value = "/register")
+    public String registro(Model model) {
+        model.addAttribute("usuario", new UsuarioEntity());
+        model.addAttribute("title", "register a  new user");
+        model.addAttribute("fechaRegistro", LocalDate.now());
+        return "register";
+
     }
 
 }
