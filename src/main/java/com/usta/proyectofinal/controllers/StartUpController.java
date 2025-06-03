@@ -8,10 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-
-@RestController
-@RequestMapping("/api/startups")
 
 @Controller
 
@@ -24,23 +20,9 @@ public class StartUpController {
             return (List<StartupEntity>) startUpDao.findAll();
         }
 
-        @GetMapping("/{id}")
-        public ResponseEntity<StartupEntity> getById(@PathVariable int id) {
-            Optional<StartupEntity> startup = startUpDao.findById(id);
-            return startup.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-        }
-
         @PostMapping
         public StartupEntity create(@RequestBody StartupEntity entity) {
             return startUpDao.save(entity);
-        }
-
-        @PutMapping("/{id}")
-        public ResponseEntity<StartupEntity> update(@PathVariable int id, @RequestBody StartupEntity entity) {
-            return startUpDao.findById(id).map(existing -> {
-                entity.setIdStartup(id);
-                return ResponseEntity.ok(startUpDao.save(entity));
-            }).orElseGet(() -> ResponseEntity.notFound().build());
         }
 
         @DeleteMapping("/{id}")
@@ -51,6 +33,4 @@ public class StartUpController {
             }
             return ResponseEntity.notFound().build();
         }
-    }
-
-
+}

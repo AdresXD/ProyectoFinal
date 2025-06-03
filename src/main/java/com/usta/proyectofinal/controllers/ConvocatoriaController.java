@@ -23,23 +23,9 @@ public class ConvocatoriaController {
             return convocatoriaDao.findAll();
         }
 
-        @GetMapping("/{id}")
-        public ResponseEntity<ConvocatoriaEntity> getById(@PathVariable int id) {
-            Optional<ConvocatoriaEntity> convocatoria = convocatoriaDao.findById(id);
-            return convocatoria.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-        }
-
         @PostMapping
         public ConvocatoriaEntity create(@RequestBody ConvocatoriaEntity entity) {
             return convocatoriaDao.save(entity);
-        }
-
-        @PutMapping("/{id}")
-        public ResponseEntity<ConvocatoriaEntity> update(@PathVariable int id, @RequestBody ConvocatoriaEntity entity) {
-            return convocatoriaDao.findById(id).map(existing -> {
-                entity.setIdConvocatoria(id);
-                return ResponseEntity.ok(convocatoriaDao.save(entity));
-            }).orElseGet(() -> ResponseEntity.notFound().build());
         }
 
         @DeleteMapping("/{id}")
