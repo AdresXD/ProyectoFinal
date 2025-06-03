@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startups Universitarias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-stone-100 text-gray-900 h-screen w-screen flex justify-center items-center"
+th:style="'background-image: url('+@{/images/FondoMain.jpg}+' );
+background-size:cover; background position: center; backdrop-filter:blur(1px)'">
 
+<header th:replace="~{layout/layout::header}"></header>
+
+<div class="max-w-2xl mx-auto mt-24 mb-12 bg-white/90 rounded-xl p-8 shadow-2xl">
+    <div th:each="startup : ${startups}" class="border-b border-gray-200 last:border-b-0 py-6">
+        <h3 class="text-xl font-semibold text-gray-800"
+            th:text="${startup.nombre}">
+            Título de Startup [[${startup.nombre}]]
+        </h3>
+        <p class="text-gray-600 mt-2" th:text="${startup.descripcion}">
+            Descripción de la startup.
+        </p>
+    </div>
+</div>s
+
+<footer class="mt-10" th:replace="~{layout/layout :: footer}"></footer>
 </body>
 </html>
