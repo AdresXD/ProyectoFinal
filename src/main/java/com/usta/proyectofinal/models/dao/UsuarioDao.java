@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 
 public interface UsuarioDao extends CrudRepository<UsuarioEntity, Long> {
-
     @Transactional
     @Query("SELECT Us FROM UsuarioEntity Us WHERE Us.email=?1")
     public UsuarioEntity findByEmail(String email);
+
 }
