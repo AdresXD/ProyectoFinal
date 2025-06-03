@@ -19,7 +19,7 @@ public class UsuarioEntity {
 
     @Id
     @Column(name = "id_usuario")
-    private Long idUsuario;
+    private Integer idUsuario;
 
     @NotNull
     @Size(min = 1, max = 100)

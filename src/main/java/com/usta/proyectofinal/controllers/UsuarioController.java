@@ -59,6 +59,13 @@ public class UsuarioController {
             return "register";
         }
 
+        //Verificación de existencia de cedula por ID
+        if (usuarioService.findById(usuario.getIdUsuario()) != null) {
+            result.rejectValue("idUsuario", "error.usuario", "Ya existe un usuario con esa cédula.");
+            model.addAttribute("title", "Register a new user");
+            return "register";
+        }
+
         if (!usuario.getPassword().equals(confirmarClave)) {
             result.rejectValue("clave", "error.usuario", "The passwords do not match.");
             model.addAttribute("title", "Register a new User");
