@@ -1,7 +1,6 @@
-package com.usta.proyectofinal.services;
+package com.usta.proyectofinal.models.services;
 
 import com.usta.proyectofinal.entities.RolEntity;
-import com.usta.proyectofinal.services.RolService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

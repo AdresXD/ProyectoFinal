@@ -24,7 +24,7 @@
                             Mentor: [[${mentoria.mentor}]]
                         </h2>
                         <div class="mt-4 flex gap-2">
-                            <form th:action="@{/eliminarMen/{id}(id=${mentoria.idMentoria   })}" method="post" onsubmit="return confirmarEliminacion(event,this);">
+                            <form th:action="@{/eliminarMen/{id}(id=${mentoria.idMentoria})}" method="post" onsubmit="return confirmarEliminacion(event,this);">
                                 <button type="submit" class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all">
                                     Eliminar
                                 </button>

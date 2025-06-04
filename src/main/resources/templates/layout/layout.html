@@ -27,7 +27,7 @@
 
         <ul class="flex gap-8 text-lg font-medium items-center">
             <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
-                sec:authorize="hasRole('EMPRENDEDOR')">
+                sec:authorize="hasAnyRole('EMPRENDEDOR', 'ADMINISTRADOR')">
                 <a th:href="@{/startupsList}">Listar mis startups</a>
             </li>
             <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
@@ -35,11 +35,11 @@
                 <a th:href="@{/convocatoria}">Convocatorias</a>
             </li>
             <li class="hover:text-gray-300 hover:underLine transition-all underline-offset-4"
-                sec:authorize="hasRole('INVERCIONISTA')">
+                sec:authorize="hasAnyRole('INVERCIONISTA', 'ADMINISTRADOR')">
                 <a th:href="@{/patrocinios}">Patrocinios</a>
             </li>
             <li class="hover:text-gray-300 hover:underLine transition-all underline-offset-4"
-                sec:authorize="hasRole('ADMINISTRADOR')">
+                sec:authorize="hasAnyRole('ADMINISTRADOR', 'EMPRENDEDOR', 'MENTOR')">
                 <a th:href="@{/mentoria}">Mis mentorias</a>
             </li>
         </ul>

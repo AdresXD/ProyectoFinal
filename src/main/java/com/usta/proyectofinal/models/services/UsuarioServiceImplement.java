@@ -1,8 +1,7 @@
-package com.usta.proyectofinal.services;
+package com.usta.proyectofinal.models.services;
 
 import com.usta.proyectofinal.entities.UsuarioEntity;
 import com.usta.proyectofinal.repositories.UsuarioRepository;
-import com.usta.proyectofinal.services.UsuarioService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +32,6 @@ public class UsuarioServiceImplement implements UsuarioService {
 
     @Override
     public void delete(int id) {
-
     }
 
     @Override

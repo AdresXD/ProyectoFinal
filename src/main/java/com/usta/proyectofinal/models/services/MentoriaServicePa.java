@@ -1,4 +1,4 @@
-package com.usta.proyectofinal.services;
+package com.usta.proyectofinal.models.services;
 
 import com.usta.proyectofinal.entities.MentoriaEntity;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,6 @@ public interface MentoriaServicePa {
         public MentoriaEntity actualizarMen(MentoriaEntity mentoria);
         public  void changeState(int id);
         public MentoriaEntity viewDetail(int id);
-
-    }
+}
 
 

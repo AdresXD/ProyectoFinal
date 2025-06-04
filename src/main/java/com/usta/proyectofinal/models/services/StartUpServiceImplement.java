@@ -1,7 +1,6 @@
-package com.usta.proyectofinal.services;
+package com.usta.proyectofinal.models.services;
 
 import com.usta.proyectofinal.entities.StartupEntity;
-import com.usta.proyectofinal.services.StartUpService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
