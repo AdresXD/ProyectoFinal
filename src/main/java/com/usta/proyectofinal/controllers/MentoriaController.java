@@ -17,15 +17,13 @@ public class MentoriaController {
     @Autowired
     private MentoriaServicePa mentoriaServicePa;
 
-    @GetMapping(value ="/mentoria")
+    @GetMapping("/mentoria")
     public String mentoria(Model model){
-        model.addAttribute("title","Mentoria List");
-        model.addAttribute("urlRegistro","/crearMentoria");
-        List<MentoriaEntity> listaInmutable = mentoriaServicePa.obtenerMentorias();
-        List<MentoriaEntity> lista = new ArrayList<>(listaInmutable); // ✅ hacerla mutable
-        lista.sort(Comparator.comparing(MentoriaEntity::getFecha));   // ordena sin error
-
-        model.addAttribute("mentorias",lista);
+        model.addAttribute("title", "Listar Mentorias");
+        List<MentoriaEntity> listaInmutable = mentoriaServicePa.findAll();
+        List<MentoriaEntity> lista = new ArrayList<>(listaInmutable); // 🔧 Hacemos mutable
+        lista.sort(Comparator.comparing(MentoriaEntity::getIdMentoria)); // o lo que uses para ordenar
+        model.addAttribute("mentorias", lista);
         return "mentorias/listarMentorias";
     }
 }
