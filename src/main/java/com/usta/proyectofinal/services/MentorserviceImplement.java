@@ -7,8 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public class MentoriaServiceImplement implements MentoriaServicePa {
-
+public abstract class MentorserviceImplement implements MentoriaService {
+    @Autowired
+    private MentoriaDao mentoriaDao;
 
     @Override
     @Transactional
@@ -46,9 +47,12 @@ public class MentoriaServiceImplement implements MentoriaServicePa {
 
     }
 
-    @Override
     @Transactional
-    public MentoriaEntity viewDetail(int id) {
-        return null;
+
+    public MentoriaEntity viewDetail(long id) {
+        return mentoriaDao.viewDetails(id);
     }
+
+
+
 }

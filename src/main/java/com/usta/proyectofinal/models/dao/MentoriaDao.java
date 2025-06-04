@@ -11,11 +11,6 @@ import java.util.List;
 public interface MentoriaDao extends CrudRepository<MentoriaEntity, Long> {
 
     @Transactional
-    @Query("SELECT Me FROM MentoriaEntity Me WHERE Me.idMentoria=?1")
-    public MentoriaEntity findMentoriaById(Long id);
-
-    @Transactional
-    @Modifying
-    @Query("SELECT Me FROM MentoriaEntity Me ORDER BY Me.fecha DESC ")
-    List<MentoriaEntity> findMentoriasByDate();
+    @Query("SELECT Me from MentoriaEntity  Me where Me.idMentoria=?1")
+    public MentoriaEntity viewDetails(Long idMentoria);
 }

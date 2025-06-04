@@ -8,16 +8,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "MENTORIAS")
-public class MentoriaEntity {
+public class MentoriaEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "id_mentoria")
-    private Integer idMentoria;
+    private long idMentoria;
 
     @NotNull
     @Temporal(TemporalType.DATE)
