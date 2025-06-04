@@ -39,7 +39,7 @@
                 <a th:href="@{/patrocinios}">Patrocinios</a>
             </li>
             <li class="hover:text-gray-300 hover:underLine transition-all underline-offset-4"
-                sec:authorize="hasRole('MENTOR')">
+                sec:authorize="hasRole('ADMINISTRADOR')">
                 <a th:href="@{/mentoria}">Mis mentorias</a>
             </li>
         </ul>
@@ -48,8 +48,16 @@
             <li class="border border-white bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-white
             hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-amber-500"
                 sec:authorize="isAnonymous()">
+                <a th:href="@{/login}">
+                    Iniciar sesión
+                </a>
+            </li>
+
+            <li class="border border-white bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-white
+            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-amber-500"
+                sec:authorize="isAnonymous()">
                 <a th:href="@{/register}">
-                    Sing up
+                    Registrarse
                 </a>
             </li>
 

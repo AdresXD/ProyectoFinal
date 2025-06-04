@@ -3,10 +3,12 @@ package com.usta.proyectofinal.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Optional;
 
 @Data
 @Entity
@@ -39,5 +41,4 @@ public class ConvocatoriaEntity {
     @DateTimeFormat(pattern = "hh:mm")
     @Column(name = "hora")
     private java.time.LocalTime hora;
-
 }

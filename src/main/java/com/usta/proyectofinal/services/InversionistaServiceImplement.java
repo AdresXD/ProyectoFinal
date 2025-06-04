@@ -1,12 +1,10 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.InversionistaEntity;
-import org.springframework.stereotype.Service;
+import com.usta.proyectofinal.services.InversionistaService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-@Service
 
 public class InversionistaServiceImplement implements InversionistaService {
 

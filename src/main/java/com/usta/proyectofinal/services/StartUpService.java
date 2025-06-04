@@ -1,8 +1,10 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.StartupEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 
 public interface StartUpService {
     public List<StartupEntity> findAll();
@@ -12,5 +14,4 @@ public interface StartUpService {
     public StartupEntity ActualizarStartUp(int id);
     public StartupEntity viewDetail(int id);
     public void cancelarStartUp(int id);
-
 }

@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface MentoriaDao extends CrudRepository<MentoriaEntity, Long> {
+public interface MentoriaDao extends CrudRepository<MentoriaEntity, Integer> {
 
     @Transactional
     @Query("SELECT Me FROM MentoriaEntity Me WHERE Me.idMentoria=?1")
-    public MentoriaEntity findMentoriaById(Long id);
+    public MentoriaEntity findMentoriaById(Integer id);
 
     @Transactional
     @Modifying
