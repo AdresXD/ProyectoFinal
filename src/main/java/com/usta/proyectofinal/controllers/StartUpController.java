@@ -5,6 +5,7 @@ import com.usta.proyectofinal.models.dao.StartUpDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,6 +35,13 @@ public class StartUpController {
             }
             return ResponseEntity.notFound().build();
         }
-    }
 
-
+        @GetMapping(value = "/modificar/{id}")
+        public String modificar(@PathVariable int id, Model model) {
+            StartupEntity startup = StartUpDao.findById(id);
+            model.addAttribute("title", "Modificar Startup");
+            model.addAttribute("startupEdit", startup);
+            model.addAttribute("imagen", startup.getLogo());
+            return "startups/editarStartups";
+        }
+}
