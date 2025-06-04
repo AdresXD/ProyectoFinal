@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 @Controller
@@ -17,11 +18,13 @@ public class MentoriaController {
     private MentoriaServicePa mentoriaServicePa;
 
     @GetMapping(value ="/mentoria")
-    public String Mentoria(Model model){
+    public String mentoria(Model model){
         model.addAttribute("title","Mentoria List");
         model.addAttribute("urlRegistro","/crearMentoria");
-        List<MentoriaEntity> lista= mentoriaServicePa.findAll();
-        lista.sort(Comparator.comparing(MentoriaEntity::getIdMentoria));
+        List<MentoriaEntity> listaInmutable = mentoriaServicePa.obtenerMentorias();
+        List<MentoriaEntity> lista = new ArrayList<>(listaInmutable); // ✅ hacerla mutable
+        lista.sort(Comparator.comparing(MentoriaEntity::getFecha));   // ordena sin error
+
         model.addAttribute("mentorias",lista);
         return "mentorias/listarMentorias";
     }
