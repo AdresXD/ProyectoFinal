@@ -37,10 +37,10 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/vermas").permitAll()
 
                         // Acceso para HUESPED y ADMINISTRADOR
-                        .requestMatchers("/habitacion").hasAnyRole("HUESPED", "ADMINISTRADOR")
+                        .requestMatchers("/convocatorias").hasAnyRole("INVERSIONISTA", "ADMINISTRADOR")
 
                         // Acceso solo para ADMINISTRADOR
-                        .requestMatchers("/crearHabitacion", "/eliminarHab/", "/modificar/", "/reserva", "/reservas/")
+                        .requestMatchers("/crearConvo", "/eliminarConvo/", "/modificar/", "/StartUp", "/StartUps/")
                         .hasRole("ADMINISTRADOR")
 
                         .anyRequest().permitAll()
