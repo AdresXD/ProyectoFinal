@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body class="bg-stone-800 min-h-screen w-screen flex flex-col mb-22"
+      th:style="'background-image:url('+@{/Image/img.jpg}+');
+background-size:cover;background-position:center;backdrop-filter:blur(1px)'">
+<header th:replace="~{layout/layout :: header}"></header>
+
+<section class="bg-stone-200 text-stone-900 py-10 mt-20 rounded-lg px-10 ml-2 mr-2 mb-10">
+
+    <section class="text-center mb-10">
+        <h1 class="text-4xl md:text-5xl font-bold font-serif text-slate-700">Detalles del Inversionista</h1>
+        <p class="mt-4 text-lg max-w-3xl mx-auto">Consulta los datos del proyecto y patrocina un emprendimiento.</p>
+    </section>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <!-- Sección izquierda con imágenes en diamante -->
+        <div class="flex justify-center">
+            <div class="relative w-72 h-72 flex flex-wrap justify-center items-center">
+                <div class="transform rotate-45 w-24 h-24 bg-white m-2 flex items-center justify-center shadow-md overflow-hidden">
+                    <img id="imgEmprendedor" src="/Image/user-icon.png" alt="Emprendedor" class="w-14 h-14 object-cover transform -rotate-45">
+                </div>
+                <div class="transform rotate-45 w-24 h-24 bg-red-400 m-2 flex items-center justify-center shadow-md overflow-hidden">
+                    <img id="imgStartup" src="/Image/startup.png" alt="Startup" class="w-14 h-14 object-cover transform -rotate-45">
+                </div>
+                <div class="transform rotate-45 w-24 h-24 bg-gray-700 m-2 flex items-center justify-center shadow-md overflow-hidden">
+                    <img id="imgMentor" src="/Image/mentor.png" alt="Mentor" class="w-14 h-14 object-cover transform -rotate-45">
+                </div>
+                <div class="absolute bottom-[-2.5rem] bg-white bg-opacity-60 px-4 py-2 rounded-md shadow-md font-semibold">
+                    Details project
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección derecha -->
+        <div class="bg-white bg-opacity-30 backdrop-blur-sm p-8 rounded-xl shadow-lg space-y-6 w-full">
+            <h2 class="text-2xl font-bold text-center">Project title</h2>
+
+            <div>
+                <label for="proyecto" class="block font-semibold mb-2">Select project</label>
+                <select id="proyecto" name="proyecto" class="w-full px-4 py-2 rounded bg-white bg-opacity-80">
+                    <option disabled selected>Selecciona un proyecto</option>
+                    <option th:each="proyecto : ${proyectos}" th:value="${proyecto.id}" th:text="${proyecto.nombre}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block font-semibold mb-2">Descripción del proyecto</label>
+                <p id="descripcionProyecto" class="bg-white bg-opacity-80 p-4 rounded text-sm min-h-[100px]">
+                    Selecciona un proyecto para ver su descripción...
+                </p>
+            </div>
+
+            <div>
+                <label for="monto" class="block font-semibold mb-2">Monto a patrocinar</label>
+                <input type="number" id="monto" name="monto" placeholder="$" class="w-full px-4 py-2 rounded bg-white bg-opacity-80">
+            </div>
+
+            <div class="text-center">
+                <button class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-lg transition-all">Patrocinar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="h-1 bg-slate-800 shadow-md rounded-full my-10 w-3/4 mx-auto"></div>
+
+    <section class="text-center">
+        <a th:href="@{/inversionistas}" class="mt-4 inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-6 rounded-lg transition-all">
+            Volver al listado
+        </a>
+    </section>
+</section>
+
+<footer th:replace="~{layout/layout :: footer}"></footer>
+
+<script>
+    document.getElementById("proyecto").addEventListener("change", async function () {
+        const id = this.value;
+        const url = "api/proyecto/${id}";
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            // Actualizar imágenes
+            document.getElementById("imgEmprendedor").src = data.fotoEmprendedor;
+            document.getElementById("imgStartup").src = data.fotoStartup;
+            document.getElementById("imgMentor").src = data.fotoMentor;
+
+            // Actualizar descripción
+            document.getElementById("descripcionProyecto").textContent = data.descripcion;
+        } catch (error) {
+            console.error("Error al cargar detalles:", error);
+        }
+    });
+</script>
+</body>
+</html>
