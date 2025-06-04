@@ -7,24 +7,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
 import java.util.Comparator;
 import java.util.List;
-@Controller
-//mentor controller
-public class MentoriaController {
-    @Autowired
-    private MentoriaService mentoriaServicePa;
+import java.util.ArrayList;
 
-    @GetMapping(value ="/mentoria")
-    public String Mentoria(Model model){
-        model.addAttribute("title","Mentoria List");
-        model.addAttribute("urlRegistro","/crearMentoria");
-        List<MentoriaEntity> lista= mentoriaServicePa.findAll();
+@Controller
+public class MentoriaController {
+
+    @Autowired
+    private MentoriaService mentoriaService;
+
+    @GetMapping(value = "/listarMentorias")
+    public String Mentoria(Model model) {
+        model.addAttribute("title", "Mentoria List");
+        model.addAttribute("urlRegistro", "/crearMentoria");
+
+        // Copia mutable de la lista
+        List<MentoriaEntity> lista = new ArrayList<>(mentoriaService.findAll());
         lista.sort(Comparator.comparing(MentoriaEntity::getIdMentoria));
-        model.addAttribute("mentorias",lista);
+
+        model.addAttribute("mentorias", lista);
         return "mentorias/listarMentorias";
     }
-
-
 }
