@@ -1,10 +1,8 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.ConvocatoriaEntity;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
 
 public interface ConvocatoriaService {
     public List<ConvocatoriaEntity> findAll();

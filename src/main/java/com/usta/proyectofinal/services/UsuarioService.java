@@ -1,10 +1,8 @@
 package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.UsuarioEntity;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
 
 public interface UsuarioService {
     public List<UsuarioEntity> findAll();

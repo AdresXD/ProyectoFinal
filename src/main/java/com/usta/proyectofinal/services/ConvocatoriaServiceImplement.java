@@ -27,7 +27,6 @@ public class ConvocatoriaServiceImplement implements ConvocatoriaService {
     @Override
     @Transactional
     public void delete(int id) {
-
     }
 
     @Override
