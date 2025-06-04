@@ -1,4 +1,4 @@
-package com.usta.proyectofinal.models.services;
+package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.StartupEntity;
 import org.springframework.stereotype.Service;
@@ -14,4 +14,5 @@ public interface StartUpService {
     public StartupEntity ActualizarStartUp(int id);
     public StartupEntity viewDetail(int id);
     public void cancelarStartUp(int id);
+
 }

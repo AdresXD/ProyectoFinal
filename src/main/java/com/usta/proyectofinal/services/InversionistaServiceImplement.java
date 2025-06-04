@@ -1,4 +1,4 @@
-package com.usta.proyectofinal.models.services;
+package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.InversionistaEntity;
 import org.springframework.transaction.annotation.Transactional;

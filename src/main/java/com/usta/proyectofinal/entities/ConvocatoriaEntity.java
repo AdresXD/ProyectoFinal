@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Data
@@ -41,4 +42,7 @@ public class ConvocatoriaEntity {
     @DateTimeFormat(pattern = "hh:mm")
     @Column(name = "hora")
     private java.time.LocalTime hora;
+
+    @OneToMany(mappedBy = "convocatoria", fetch = FetchType.LAZY)
+    private List<StartupEntity> startups;
 }

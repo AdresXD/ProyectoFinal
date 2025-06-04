@@ -1,6 +1,7 @@
-package com.usta.proyectofinal.models.services;
+package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.ConvocatoriaEntity;
+import com.usta.proyectofinal.entities.StartupEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,5 +15,7 @@ public interface ConvocatoriaService {
     public ConvocatoriaEntity actualizarConvo(ConvocatoriaEntity convocatoria);
     public ConvocatoriaEntity viewConvo(int id);
     public void cancelarConvo(int id);
+    public boolean existeConvocatoriaParaStartup(StartupEntity startup);
+    public List<ConvocatoriaEntity> buscarPorStartup(StartupEntity startup);
 
 }

@@ -1,20 +1,13 @@
-package com.usta.proyectofinal.models.services;
+package com.usta.proyectofinal.services;
 
 import com.usta.proyectofinal.entities.ConvocatoriaEntity;
+import com.usta.proyectofinal.entities.StartupEntity;
 import com.usta.proyectofinal.models.dao.ConvocatoriaDao;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-
 public class ConvocatoriaServiceImplement implements ConvocatoriaService {
-
-    @Autowired
-    private ConvocatoriaDao convocatoriaDao;
-
     @Override
     @Transactional
     public List<ConvocatoriaEntity> findAll() {
@@ -35,8 +28,7 @@ public class ConvocatoriaServiceImplement implements ConvocatoriaService {
 
     @Override
     @Transactional
-    public void delete(int id) {
-    }
+    public void delete(int id) {}
 
     @Override
     @Transactional
@@ -52,7 +44,23 @@ public class ConvocatoriaServiceImplement implements ConvocatoriaService {
 
     @Override
     @Transactional
-    public void cancelarConvo(int id) {
+    public void cancelarConvo(int id) {}
 
+    @Override
+    public boolean existeConvocatoriaParaStartup(StartupEntity startup) {
+        return false;
+    }
+
+    @Override
+    public List<ConvocatoriaEntity> buscarPorStartup(StartupEntity startup) {
+        return List.of();
+    }
+
+    public ConvocatoriaServiceImplement() {
+        super();
+    }
+
+    public List<ConvocatoriaEntity> buscarPorStartupId(Integer idStartup) {
+        return null;
     }
 }
