@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body class="bg-stone-900 text-white min-h-screen flex flex-col items-center justify-center"
+      style="background-image: url('/Image/oficina.jpg'); background-size: cover; background-position: center;">
+
+<header th:replace="~{layout/layout :: header}"></header>
+
+<main class="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-10 shadow-xl w-[90%] max-w-4xl text-center">
+    <h1 class="text-4xl font-bold mb-6 text-white">[[${Convocatoria.nombre}]]</h1>
+
+    <div class="flex flex-col md:flex-row items-center justify-around gap-6">
+        <!-- Diamantes de imágenes -->
+        <div class="relative w-64 h-64 flex flex-wrap justify-center items-center">
+            <div class="rotate-45 w-24 h-24 bg-white/80 m-2 flex items-center justify-center overflow-hidden shadow-md">
+                <img th:src="@{/Image/user-icon.png}" class="w-14 h-14 object-cover -rotate-45" alt="User">
+            </div>
+            <div class="rotate-45 w-24 h-24 bg-white/80 m-2 flex items-center justify-center overflow-hidden shadow-md">
+                <img th:src="@{/Image/startup.png}" class="w-14 h-14 object-cover -rotate-45" alt="Startup">
+            </div>
+            <div class="rotate-45 w-24 h-24 bg-white/80 m-2 flex items-center justify-center overflow-hidden shadow-md">
+                <img th:src="@{/Image/mentor.png}" class="w-14 h-14 object-cover -rotate-45" alt="Mentor">
+            </div>
+            <div class="absolute bottom-[-2rem] bg-black/60 text-white text-sm px-3 py-1 rounded-full">
+                Details project
+            </div>
+        </div>
+
+        <!-- Información de la convocatoria -->
+        <div class="text-left space-y-4 bg-white/20 p-6 rounded-xl shadow-md w-full max-w-md">
+            <p class="text-xl font-semibold"> Lugar: <span class="text-blue-300">[[${Convocatoria.lugar}]]</span></p>
+            <p class="text-lg"> Descripción: <span th:text="${Convocatoria.descripcion}">Detalles...</span></p>
+            <p class="text-md"> Fecha: <span th:text="${#dates.format(Convocatoria.fecha, 'dd/MM/yyyy')}"></span></p>
+            <p class="text-md"> Hora: <span th:text="${#dates.format(Convocatoria.hora, 'HH:mm')}"></span></p>
+        </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="mt-8 flex justify-center gap-6">
+        <a th:href="@{/modificar/{id}(id=${Convocatoria.idConvocatoria})}"
+           class="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-6 rounded-lg transition-all"
+           sec:authorize="hasRole('ADMINISTRADOR')">Edit</a>
+
+        <form th:action="@{/eliminarHab/{id}(id=${Convocatoria.idConvocatoria})}" method="post"
+              onsubmit="return confirmarEliminacion(event,this);">
+            <button type="submit"
+                    class="bg-red-700 hover:bg-red-800 text-white font-semibold py-2 px-6 rounded-lg transition-all"
+                    sec:authorize="hasRole('ADMINISTRADOR')">Delete</button>
+        </form>
+    </div>
+</main>
+
+<footer th:replace="~{layout/layout :: footer}"></footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmarEliminacion(event, form) {
+        event.preventDefault();
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Esta acción no se puede deshacer.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+</script>
+</body>
+</html>

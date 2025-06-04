@@ -1,7 +1,6 @@
 package com.usta.proyectofinal.models.dao;
 
 import com.usta.proyectofinal.entities.ConvocatoriaEntity;
-import com.usta.proyectofinal.entities.UsuarioEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;

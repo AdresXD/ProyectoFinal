@@ -1,7 +1,6 @@
-package com.usta.proyectofinal.services;
+package com.usta.proyectofinal.models.services;
 
 import com.usta.proyectofinal.entities.InversionistaEntity;
-import com.usta.proyectofinal.services.InversionistaService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

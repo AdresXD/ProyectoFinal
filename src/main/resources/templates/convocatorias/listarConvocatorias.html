@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{Layout/layout :: head}"></head>
+<body class="m-0 p-0 font-sans bg-[url('/Image/Estilo.jpg')] bg-cover bg-center bg-fixed text-gray-800">
+<header th:replace="~{Layout/layout :: header}"></header>
+<header th:replace="~{Layout/layout :: nuevo2}"></header>
+<link rel="stylesheet" th:href="@{/css/styleRes.css}">
+
+<div class="mt-20 w-full max-w-7xl mx-auto p-6 bg-white bg-opacity-90 rounded-xl shadow-xl">
+  <h1 class="text-4xl font-extrabold text-center text-slate-800 mb-10 font-['Poppins'] tracking-wide">
+    Gestión de Convocatorias
+  </h1>
+
+  <div class="overflow-x-auto rounded-lg shadow-lg border border-gray-200">
+    <table class="w-full table-auto text-sm text-left text-gray-700 bg-white">
+      <thead class="text-xs uppercase bg-slate-100 text-slate-700 font-semibold">
+      <tr>
+        <th class="px-6 py-4">ID</th>
+        <th class="px-6 py-4">Nombre</th>
+        <th class="px-6 py-4">Descripción</th>
+        <th class="px-6 py-4">Fecha Inicio</th>
+        <th class="px-6 py-4">Fecha Fin</th>
+        <th class="px-6 py-4">Estado</th>
+        <th class="px-6 py-4 text-center">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="convo : ${convocatorias}" class="hover:bg-gray-100 transition-colors border-t border-gray-100">
+        <td class="px-6 py-4 font-medium text-gray-900" th:text="${convo.idConvocatoria}"></td>
+        <td class="px-6 py-4" th:text="${convo.nombreConvocatoria}">Nombre</td>
+        <td class="px-6 py-4" th:text="${convo.descripcion}">Descripción</td>
+        <td class="px-6 py-4" th:text="${convo.fechaInicio}">Fecha Inicio</td>
+        <td class="px-6 py-4" th:text="${convo.fechaFin}">Fecha Fin</td>
+        <td class="px-6 py-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold"
+                              th:classappend="${convo.estadoConvocatoria == 'Activo'} ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
+                              th:text="${convo.estadoConvocatoria}">
+                        </span>
+        </td>
+        <td class="px-6 py-4 text-center space-x-2">
+          <a th:href="@{'/convocatorias/editar/' + ${convo.idConvocatoria}}"
+             class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-amber-600 hover:text-amber-800 transition"
+             title="Editar Convocatoria">
+            <i class="fas fa-pen mr-1"></i> Editar
+          </a>
+
+          <form th:action="@{'/convocatorias/eliminarConvo/' + ${convo.idConvocatoria}}"
+                method="post"
+                class="inline"
+                onsubmit="return confirm('¿Seguro que deseas eliminar esta convocatoria?')">
+            <button type="submit"
+                    class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-red-600 hover:text-red-800 transition"
+                    title="Eliminar convocatoria">
+              <i class="fas fa-trash mr-1"></i> Eliminar
+            </button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}"></head>
+<body class="relative min-h-screen w-screen overflow-hidden"
+      th:style="'background-image:url('+@{/Image/habitacion2.jpg}+');
+background-size:cover;background-position:center;'">
+<header th:replace="~{layout/layout :: header}"></header>
+
+<!-- Fondo oscuro y desenfoque -->
+<div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-0"></div>
+
+<!-- Contenedor principal -->
+<section class="relative z-10 flex flex-col md:flex-row items-center justify-center min-h-screen px-4 py-10 space-y-10 md:space-y-0 md:space-x-16">
+
+    <!-- Imágenes en diamante -->
+    <div class="flex flex-col items-center space-y-4">
+        <div class="grid grid-cols-2 gap-2 transform scale-125">
+            <div class="w-24 h-24 rotate-45 overflow-hidden shadow-md bg-white flex justify-center items-center">
+                <img id="imgEmprendedor" src="/Image/user-icon.png" class="w-16 h-16 object-cover -rotate-45">
+            </div>
+            <div class="w-24 h-24 rotate-45 overflow-hidden shadow-md bg-red-400 flex justify-center items-center">
+                <img id="imgStartup" src="/Image/startup.png" class="w-16 h-16 object-cover -rotate-45">
+            </div>
+            <div class="w-24 h-24 rotate-45 overflow-hidden shadow-md bg-gray-700 flex justify-center items-center">
+                <img id="imgMentor" src="/Image/mentor.png" class="w-16 h-16 object-cover -rotate-45">
+            </div>
+            <div class="w-24 h-24 rotate-45 overflow-hidden shadow-md bg-white flex justify-center items-center">
+                <p class="text-sm font-semibold text-center -rotate-45">Details<br>project</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario tipo glassmorphism -->
+    <div class="bg-white bg-opacity-20 backdrop-blur-md p-8 rounded-xl w-full max-w-md shadow-lg space-y-6">
+        <h2 class="text-2xl font-bold text-white text-center">Project title</h2>
+
+        <div>
+            <label for="proyecto" class="block text-white font-semibold mb-2">Select project</label>
+            <select id="proyecto" name="proyecto" class="w-full px-4 py-2 rounded bg-white bg-opacity-70 text-gray-800">
+                <option disabled selected>Selecciona un proyecto</option>
+                <option th:each="proyecto : ${proyectos}" th:value="${proyecto.id}" th:text="${proyecto.nombre}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label class="block text-white font-semibold mb-2">Cash</label>
+            <input type="number" id="monto" name="monto" placeholder="$" class="w-full px-4 py-2 rounded bg-white bg-opacity-70 text-gray-800">
+        </div>
+
+        <div class="text-center">
+            <button class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-lg transition-all">
+                Patrocinate
+            </button>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="~{layout/layout :: footer}"></footer>
+
+<script>
+    document.getElementById("proyecto").addEventListener("change", async function () {
+        const id = this.value;
+        const url = /api/proyecto/${id};
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            // Actualizar imágenes
+            document.getElementById("imgEmprendedor").src = data.fotoEmprendedor;
+            document.getElementById("imgStartup").src = data.fotoStartup;
+            document.getElementById("imgMentor").src = data.fotoMentor;
+        } catch (error) {
+            console.error("Error al cargar detalles:", error);
+        }
+    });
+</script>
+</body>
+</html>

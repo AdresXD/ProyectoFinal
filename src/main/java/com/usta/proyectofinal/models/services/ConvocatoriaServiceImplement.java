@@ -1,4 +1,4 @@
-package com.usta.proyectofinal.services;
+package com.usta.proyectofinal.models.services;
 
 import com.usta.proyectofinal.entities.ConvocatoriaEntity;
 import com.usta.proyectofinal.models.dao.ConvocatoriaDao;

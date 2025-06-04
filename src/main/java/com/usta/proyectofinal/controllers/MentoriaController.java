@@ -1,7 +1,7 @@
 package com.usta.proyectofinal.controllers;
 
 import com.usta.proyectofinal.entities.MentoriaEntity;
-import com.usta.proyectofinal.services.MentoriaServicePa;
+import com.usta.proyectofinal.models.services.MentoriaServicePa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
