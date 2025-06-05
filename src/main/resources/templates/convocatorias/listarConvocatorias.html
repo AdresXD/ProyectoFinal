@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{Layout/layout :: head}"></head>
-<body class="m-0 p-0 font-sans bg-[url('/Image/Estilo.jpg')] bg-cover bg-center bg-fixed text-gray-800">
+<body class="m-0 p-0 font-sans bg-[url('/images/FondoMain.jpg')] bg-cover bg-center bg-fixed text-gray-800">
 <header th:replace="~{Layout/layout :: header}"></header>
-<header th:replace="~{Layout/layout :: nuevo2}"></header>
 <link rel="stylesheet" th:href="@{/css/styleRes.css}">
 
 <div class="mt-20 w-full max-w-7xl mx-auto p-6 bg-white bg-opacity-90 rounded-xl shadow-xl">
@@ -18,32 +18,18 @@
         <th class="px-6 py-4">ID</th>
         <th class="px-6 py-4">Nombre</th>
         <th class="px-6 py-4">Descripción</th>
-        <th class="px-6 py-4">Fecha Inicio</th>
-        <th class="px-6 py-4">Fecha Fin</th>
-        <th class="px-6 py-4">Estado</th>
-        <th class="px-6 py-4 text-center">Acciones</th>
+        <th class="px-6 py-4">Fecha</th>
+        <th class="px-6 py-4 text-center" sec:authorize="hasRole('ADMINISTRADOR')">Acciones</th>
       </tr>
       </thead>
       <tbody>
       <tr th:each="convo : ${convocatorias}" class="hover:bg-gray-100 transition-colors border-t border-gray-100">
         <td class="px-6 py-4 font-medium text-gray-900" th:text="${convo.idConvocatoria}"></td>
-        <td class="px-6 py-4" th:text="${convo.nombreConvocatoria}">Nombre</td>
+        <td class="px-6 py-4" th:text="${convo.nombre}">Nombre</td>
         <td class="px-6 py-4" th:text="${convo.descripcion}">Descripción</td>
-        <td class="px-6 py-4" th:text="${convo.fechaInicio}">Fecha Inicio</td>
-        <td class="px-6 py-4" th:text="${convo.fechaFin}">Fecha Fin</td>
-        <td class="px-6 py-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold"
-                              th:classappend="${convo.estadoConvocatoria == 'Activo'} ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
-                              th:text="${convo.estadoConvocatoria}">
-                        </span>
-        </td>
-        <td class="px-6 py-4 text-center space-x-2">
-          <a th:href="@{'/convocatorias/editar/' + ${convo.idConvocatoria}}"
-             class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-amber-600 hover:text-amber-800 transition"
-             title="Editar Convocatoria">
-            <i class="fas fa-pen mr-1"></i> Editar
-          </a>
-
+        <td class="px-6 py-4" th:text="${#dates.format(convo.fecha, 'yyyy-MM-dd')}">Fecha</td>
+        <td class="px-6 py-4 text-center space-x-2" sec:authorize="hasRole('ADMINISTRADOR')">
+          <!-- Puedes agregar aquí enlaces o botones para editar o eliminar -->
           <form th:action="@{'/convocatorias/eliminarConvo/' + ${convo.idConvocatoria}}"
                 method="post"
                 class="inline"

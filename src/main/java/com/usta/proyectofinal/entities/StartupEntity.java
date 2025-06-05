@@ -5,12 +5,10 @@ import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.Optional;
 
 @Data
 @Entity
@@ -18,6 +16,7 @@ import java.util.Optional;
 public class StartupEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_startup")
     private Integer idStartup;
 
@@ -41,27 +40,19 @@ public class StartupEntity {
 
     @NotNull
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_postulacion", nullable = false)
     private Date fechaPostulacion;
 
-    /**
-     Relación con la entidad usuario
-     */
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_emprendedor", referencedColumnName = "id_usuario", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UsuarioEntity emprendedor;
 
-    /**
-     Relación con la entidad convocatoria
-     */
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_convocatoria", referencedColumnName = "id_convocatoria", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ConvocatoriaEntity convocatoria;
-
-
 }

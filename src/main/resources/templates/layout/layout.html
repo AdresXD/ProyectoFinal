@@ -32,7 +32,7 @@
             </li>
             <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
                 sec:authorize="hasAnyRole('ADMINISTRADOR', 'EMPRENDEDOR', 'MENTOR', 'INVERCIONISTA')">
-                <a th:href="@{/convocatoria}">Convocatorias</a>
+                <a th:href="@{/convocatorias/convocatoria}">Convocatorias</a>
             </li>
             <li class="hover:text-gray-300 hover:underLine transition-all underline-offset-4"
                 sec:authorize="hasAnyRole('INVERCIONISTA', 'ADMINISTRADOR')">
@@ -46,7 +46,7 @@
 
         <ul class="flex gap-6 items-center font-medium">
             <li class="border border-white bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-white
-            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-amber-500"
+            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-blue-500"
                 sec:authorize="isAnonymous()">
                 <a th:href="@{/login}">
                     Iniciar sesión
@@ -54,7 +54,7 @@
             </li>
 
             <li class="border border-white bg-white text-gray-800 px-4 py-2 rounded-lg hover:bg-white
-            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-amber-500"
+            hover:text-gray-800 transition-all hover:scale-105 hover:ring-2 hover:ring-blue-500"
                 sec:authorize="isAnonymous()">
                 <a th:href="@{/register}">
                     Registrarse
