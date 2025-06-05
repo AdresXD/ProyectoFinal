@@ -1,60 +1,66 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/layout :: head}"></head>
-<body class="bg-stone-900 text-stone-100 flex flex-col items-center min-h-screen w-screen">
-<header th:replace="~{layout/layout :: header}"></header>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body class="bg-stone-900 text-stone-100 flex flex-col min-h-screen w-screen">
 
-<div th:replace="~{layout/layout :: nuevo}">
-    <div class="w-screen min-h-screen flex flex-col items-center pt-32 px-6">
-        <h1 class="text-4xl font-bold text-yellow mb-6 font-['Poppins']">
-            [[${title}]]
-        </h1>
+<header th:replace="layout/layout :: header"></header>
 
-        <section class="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all"
-                 th:each="mentoria : ${mentorias}">
-                <img th:src="@{${mentoria.logo}}" alt="Imagen de la mentoria" class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <p class="text-lg font-bold text-gray-800">
-                        Mentoria N°: [[${mentoria.idMentoria}]]
-                    </p>
-                    <h2 class="text-2xl font-semibold text-stone-800">
-                        Fecha de mentoria: [[${mentoria.fecha}]]
-                    </h2>
-                    <h2 class="text-2xl font-semibold text-stone-800">
-                        Mentor: [[${mentoria.mentor}]]
-                    </h2>
+<div class="w-full max-w-6xl mx-auto pt-32 px-6">
+    <h1 class="text-4xl font-bold text-yellow mb-6 font-['Poppins']">
+        [[${title}]]
+    </h1>
 
-                    <!-- Botones -->
-                    <div class="mt-4 flex gap-2 flex-wrap">
-                        <!-- Botón Ver Detalles -->
-                        <a th:href="@{/mentorias/ver/{id}(id=${mentoria.idMentoria})}"
-                           class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all">
-                            Ver Detalles
-                        </a>
-
-                        <!-- Botón Eliminar -->
-                        <form th:action="@{/eliminarMen/{id}(id=${mentoria.idMentoria})}" method="post"
-                              onsubmit="return confirmarEliminacion(event,this);">
-                            <button type="submit"
-                                    class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all">
-                                Eliminar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+    <!-- Tabla de mentorías -->
+    <table class="w-full text-left border-collapse border border-gray-300 rounded-lg overflow-hidden">
+        <thead class="bg-yellow-600 text-stone-900">
+        <tr>
+            <th class="p-3 border border-gray-300">ID</th>
+            <th class="p-3 border border-gray-300">Calificación</th>
+            <th class="p-3 border border-gray-300">Logo</th>
+            <th class="p-3 border border-gray-300">Fecha</th>
+            <th class="p-3 border border-gray-300">Observaciones</th>
+            <th class="p-3 border border-gray-300">ID Mentor</th>
+            <th class="p-3 border border-gray-300">ID StartUp</th>
+            <th class="p-3 border border-gray-300">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mentoria : ${mentorias}" class="odd:bg-stone-700 even:bg-stone-800">
+            <td class="p-3 border border-gray-300">[[${mentoria.idMentoria}]]</td>
+            <td class="p-3 border border-gray-300">[[${mentoria.calificacion}]]</td>
+            <td class="p-3 border border-gray-300">
+                <img th:src="@{${mentoria.logo}}" alt="Logo" class="w-16 h-16 object-contain" />
+            </td>
+            <td class="p-3 border border-gray-300">[[${mentoria.fecha}]]</td>
+            <td class="p-3 border border-gray-300">[[${mentoria.observaciones}]]</td>
+            <td class="p-3 border border-gray-300">[[${mentoria.idMentor}]]</td>
+            <td class="p-3 border border-gray-300">[[${mentoria.idStartUp}]]</td>
+            <td class="p-3 border border-gray-300 space-x-2">
+                <a th:href="@{/mentorias/ver/{id}(id=${mentoria.idMentoria})}"
+                   class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition">
+                    Ver Detalles
+                </a>
+                <form th:action="@{/mentorias/eliminar/{id}(id=${mentoria.idMentoria})}" method="post"
+                      onsubmit="return confirmarEliminacion(event,this);" class="inline">
+                    <button type="submit"
+                            class="bg-red-800 text-white px-3 py-1 rounded hover:bg-red-600 transition">
+                        Eliminar
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 <!-- Toast de éxito -->
-<div id="toast-exito" class="fixed top-5 left-1/2 transform-traslate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-xl
+<div id="toast-exito" class="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-xl
     shadow-xl transition-opacity duration-300 opacity-0 z-50 text-lg font-semibold"
      th:if="${mensajeExito}" th:text="${mensajeExito}">
 </div>
 
-<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     window.addEventListener("DOMContentLoaded", function () {
         const toast = document.getElementById("toast-exito");
@@ -65,31 +71,6 @@
                 toast.classList.remove("opacity-100");
                 toast.classList.add("opacity-0");
             }, 3000);
-        }
-    });
-</script>
-
-<footer class="mt-10" th:replace="~{layout/layout :: footer}"></footer>
-
-<script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let successMessage = "[[${success}]]";
-        if (successMessage && successMessage !== "null" && successMessage.trim() !== "") {
-            Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: successMessage
-            });
-        }
-
-        let errorMessage = "[[${error}]]";
-        if (errorMessage && errorMessage !== "null" && errorMessage.trim() !== "") {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: errorMessage
-            });
         }
     });
 
@@ -111,5 +92,8 @@
         });
     }
 </script>
+
+<footer th:replace="layout/layout :: footer"></footer>
+
 </body>
 </html>

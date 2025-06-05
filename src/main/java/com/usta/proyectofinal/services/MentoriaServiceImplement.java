@@ -17,7 +17,7 @@ public class MentoriaServiceImplement implements MentoriaService{
     @Override
     @Transactional
     public List<MentoriaEntity> findAll() {
-        return List.of();
+        return(List<MentoriaEntity>) mentoriaDao.findAll() ;
     }
 
     @Override
