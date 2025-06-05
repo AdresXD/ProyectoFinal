@@ -35,10 +35,6 @@
                 <a th:href="@{/convocatorias/convocatoria}">Convocatorias</a>
             </li>
             <li class="hover:text-gray-300 hover:underLine transition-all underline-offset-4"
-                sec:authorize="hasAnyRole('INVERCIONISTA', 'ADMINISTRADOR')">
-                <a th:href="@{/patrocinios}">Patrocinios</a>
-            </li>
-            <li class="hover:text-gray-300 hover:underLine transition-all underline-offset-4"
                 sec:authorize="hasAnyRole('ADMINISTRADOR', 'EMPRENDEDOR', 'MENTOR')">
                 <a th:href="@{/mentoria}">Mis mentorias</a>
             </li>
