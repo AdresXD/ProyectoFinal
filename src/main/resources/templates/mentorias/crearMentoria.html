@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body class="bg-stone-900 text-stone-100 flex flex-col min-h-screen w-screen">
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="w-full max-w-3xl mx-auto pt-32 px-6">
+    <h1 class="text-4xl font-bold text-yellow mb-6 font-['Poppins']" th:text="${title}">Crear Mentoría</h1>
+
+    <form th:action="@{/crearMentoria}" th:object="${mentoria}" method="post" class="space-y-6 bg-stone-800 p-8 rounded-lg shadow-lg">
+
+        <div>
+            <label for="idMentoria" class="block mb-1 font-semibold">ID Mentoría</label>
+            <input type="number" id="idMentoria" th:field="*{idMentoria}"
+                   class="w-full p-2 rounded bg-stone-700 text-stone-100 border border-gray-600" required />
+        </div>
+
+        <div>
+            <label for="calificacion" class="block mb-1 font-semibold">Calificación</label>
+            <input type="number" id="calificacion" th:field="*{calificacion}" min="1" max="5"
+                   class="w-full p-2 rounded bg-stone-700 text-stone-100 border border-gray-600" required />
+        </div>
+
+        <div>
+            <label for="logo" class="block mb-1 font-semibold">Logo (URL o ruta)</label>
+            <input type="text" id="logo" th:field="*{logo}"
+                   class="w-full p-2 rounded bg-stone-700 text-stone-100 border border-gray-600" />
+        </div>
+
+        <div>
+            <label for="fecha" class="block mb-1 font-semibold">Fecha</label>
+            <input type="date" id="fecha" th:field="*{fecha}"
+                   class="w-full p-2 rounded bg-stone-700 text-stone-100 border border-gray-600" required />
+        </div>
+
+        <div>
+            <label for="observaciones" class="block mb-1 font-semibold">Observaciones</label>
+            <textarea id="observaciones" th:field="*{observaciones}" rows="4"
+                      class="w-full p-2 rounded bg-stone-700 text-stone-100 border border-gray-600"></textarea>
+        </div>
+
+        <div>
+            <label for="idMentor" class="block mb-1 font-semibold">ID Mentor</label>
+            <input type="number" id="idMentor" th:field="*{idMentor}"
+                   class="w-full p-2 rounded bg-stone-700 text-stone-100 border border-gray-600" required />
+        </div>
+
+        <div>
+            <label for="idStartUp" class="block mb-1 font-semibold">ID StartUp</label>
+            <input type="number" id="idStartUp" th:field="*{idStartUp}"
+                   class="w-full p-2 rounded bg-stone-700 text-stone-100 border border-gray-600" required />
+        </div>
+
+        <div class="flex justify-end">
+            <button type="submit"
+                    class="bg-yellow-600 hover:bg-yellow-700 text-stone-900 px-6 py-2 rounded font-semibold transition">
+                Crear Mentoría
+            </button>
+        </div>
+    </form>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

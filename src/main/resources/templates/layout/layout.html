@@ -13,8 +13,16 @@
 
 <header th:fragment="header">
     <nav class="bg-blue-800 p-4 text-white flex justify-between items-center">
-        <a th:href="@{/}" class="text-2xl font-bold">Listar Mentorias</a>
+        <a th:href="@{/}" class="text-2xl font-bold">Listar Mentorías</a>
 
+        <!-- Botón Crear Mentoría (visible solo si está autenticado) -->
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/mentorias/crear}"
+               class="bg-amber-500 text-white font-semibold px-4 py-2 rounded-lg
+                      hover:bg-white hover:text-amber-700 border border-amber-500 transition-all active:scale-105">
+                ➕ Crear Mentoría
+            </a>
+        </div>
     </nav>
 </header>
 

@@ -23,6 +23,7 @@ public class MentoriaServiceImplement implements MentoriaService{
     @Override
     @Transactional
     public void save(MentoriaEntity mentoria) {
+        mentoriaDao.save(mentoria);
 
     }
 
