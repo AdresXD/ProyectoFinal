@@ -2,7 +2,7 @@ package com.usta.proyectofinal.controllers;
 
 import com.usta.proyectofinal.entities.RolEntity;
 import com.usta.proyectofinal.entities.UsuarioEntity;
-import com.usta.proyectofinal.models.services.UsuarioService;
+import com.usta.proyectofinal.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -66,7 +66,7 @@ public class UsuarioController {
         usuario.setPassword(pass);
 
         RolEntity rol = new RolEntity();
-        rol.setIdRol(2L);
+        rol.setIdRol(3L);
         usuario.setRol(rol);
         usuario.setFechaRegistro(LocalDate.now());
         usuarioService.save(usuario);

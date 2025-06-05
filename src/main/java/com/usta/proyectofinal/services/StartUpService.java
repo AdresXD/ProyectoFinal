@@ -14,5 +14,6 @@ public interface StartUpService {
     public StartupEntity ActualizarStartUp(int id);
     public StartupEntity viewDetail(int id);
     public void cancelarStartUp(int id);
+    List<StartupEntity> findByUsuarioId(Long idUsuario);
 
 }

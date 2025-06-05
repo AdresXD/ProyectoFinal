@@ -28,7 +28,7 @@
         <ul class="flex gap-8 text-lg font-medium items-center">
             <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
                 sec:authorize="hasAnyRole('EMPRENDEDOR', 'ADMINISTRADOR')">
-                <a th:href="@{/startupsList}">Listar mis startups</a>
+                <a th:href="@{/api/startups/lista}">Listar mis startups</a>
             </li>
             <li class="hover:text-gray-300 hover:underLine transition-all underLine-offset-4"
                 sec:authorize="hasAnyRole('ADMINISTRADOR', 'EMPRENDEDOR', 'MENTOR', 'INVERCIONISTA')">

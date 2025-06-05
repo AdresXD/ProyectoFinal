@@ -9,9 +9,11 @@ import java.util.List;
 public interface UsuarioService {
     public List<UsuarioEntity> findAll();
     public void save(UsuarioEntity usuario);
-    public UsuarioEntity findById(int id);
+    public UsuarioEntity findById(Long id);
     public void delete(int id);
     public UsuarioEntity actualizarUsu(UsuarioEntity usuario);
     public void changeState(int id);
     public UsuarioEntity viewDetail(Long id);
+
+    UsuarioEntity findByEmail(String email);
 }
